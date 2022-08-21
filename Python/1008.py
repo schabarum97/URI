@@ -1,0 +1,6 @@
+id=int(input())
+horas=int(input())
+vHora=float(input())
+salario=float(horas*vHora)
+print('NUMBER = {}'.format(id))
+print("SALARY = U$ %0.2f"%salario)
