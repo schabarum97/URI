@@ -11,6 +11,7 @@ if horaInicial < horaFinal:
     if minutoInicial < minutoFinal:
         minutos = minutoFinal - minutoInicial
     if minutoInicial > minutoFinal:
+        
         horas -= 1
         minutos = (60 - minutoInicial) + minutoFinal
     if minutoInicial == minutoFinal:
