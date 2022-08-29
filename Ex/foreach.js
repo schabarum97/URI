@@ -6,7 +6,7 @@ lista.forEach((value, index,list) => {
 });
 
 
-lista.forEach((value, index,list) => {
+/*lista.forEach((value, index,list) => {
     if (index < 3)
     console.log(value,index,list)
-});
+});*/
