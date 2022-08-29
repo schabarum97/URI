@@ -16,4 +16,4 @@ if 5.0 <=  media <= 6.9:
         print("Media final: %0.1f" % nFinal)
     else:
         print('Aluno reprovado.')
-        print("Media final: %0.1f" % nFinal)
+        print("Media final: %0.1f" % nFinal)    
