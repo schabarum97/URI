@@ -25,7 +25,6 @@ else if (x== 19){
 else if (x== 27){
     console.log('Vitoria')
 }
-
 else if (x== 31){
     console.log('Belo Horizonte')
 }
