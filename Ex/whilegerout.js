@@ -11,3 +11,4 @@ while (!caiFora) {
     }
     console.log(linha)
 }
+
