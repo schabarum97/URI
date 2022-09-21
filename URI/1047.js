@@ -5,7 +5,6 @@ const pegarValores = (line) => line.split(" ").map(a => +a)
 const [horaInicial, minutoInicial, horaFinal, minutoFinal] = pegarValores(lines.shift())
 horas = 0
 minutos = 0
-
 if (horaInicial < horaFinal) {
         horas = (horaFinal - horaInicial)
  if (minutoInicial < minutoFinal) {
@@ -17,7 +16,6 @@ if (horaInicial < horaFinal) {
         minutos = 0
     }
 }
-
 if (horaInicial > horaFinal) {
         horas = (24 - horaInicial) + horaFinal
     if (minutoInicial < minutoFinal) {
@@ -29,7 +27,6 @@ if (horaInicial > horaFinal) {
         minutos = 0
     }
 }
-
 if (horaInicial === horaFinal) {
     if (minutoInicial < minutoFinal) {
         minutos = minutoFinal - minutoInicial
@@ -43,6 +40,7 @@ if (horaInicial === horaFinal) {
     }
 }
 console.log(`O JOGO DUROU ${horas} HORA(S) E ${minutos} MINUTO(S)`)
+
 
 
 

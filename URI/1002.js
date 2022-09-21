@@ -1,8 +1,8 @@
 let input = require ('fs').readFileSync('./dev/stdin/file.txt','utf8')
 let = lines = input.split('\n')
 
-let raio = +lines.shift()
+const n = 3.14159;
 
-console.log(`A=${raio * raio * 3.14159.toFixed(4)}`)
+let raio = Number.parseFloat(lines.shift())
 
-
+console.log(`A=${(n*Math.pow(raio, 2)).toFixed(4)}`)

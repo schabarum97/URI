@@ -9,6 +9,6 @@ const [id2,qnt2,valPeca2]=pegarValores(lines.shift())
 const precoAPagar1 = qnt1 * valPeca1
 const precoAPagar2 = qnt2 * valPeca2
 
-let mensagem = `VALOR A PAGAR: RS ${(precoAPagar1 + precoAPagar2).toFixed(2)}`
+let mensagem = `VALOR A PAGAR: R$ ${(precoAPagar1 + precoAPagar2).toFixed(2)}`
 
 console.log(mensagem)

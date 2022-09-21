@@ -16,7 +16,7 @@ switch (mes) {
         console.log('April')
         break
     case 5:
-        console.log('April')
+        console.log('May')
         break
     case 6:
         console.log('June')
