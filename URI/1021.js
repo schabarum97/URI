@@ -13,5 +13,5 @@ console.log('MOEDAS:')
 for (let cont = 6; cont < valor.length; cont++) {
     ajuda = Math.floor(total/valor[cont])
     console.log(`${ajuda} moeda(s) de R$ ${valor[cont].toFixed(2)}`)
-    total = total%valor[cont]
+    total = total%valor[cont] + 0.00001
 }
