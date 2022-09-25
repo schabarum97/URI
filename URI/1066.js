@@ -15,7 +15,7 @@ for (let i = 0; i <5; i++) {
     }
     if (valor>0){
         contadorDePositos++
-    }else{
+    }else if (valor < 0){
         contadorDeNegativos++
     }
 }
