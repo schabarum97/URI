@@ -17,3 +17,6 @@ let gato = animal
     }).reduce((a,b) => a+b)
 
 console.log('Soma das idades dos gatos é:',gato)
+
+
+
