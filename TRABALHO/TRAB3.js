@@ -183,21 +183,17 @@ const partidas = [{
 /*
     TODO: Tendo em mente o objeto 'partidas' escrito acima resolva o seguinte problema.
     
-    ? Somando Status
-    ? Monte um algoritmo para selecionar quem mais tem ponto por status!
+    ? Para auxiliar a Seleção Brasileira vamos ordenar os jogadores!
     
-    * 1º Quais jogadores fizeram mais gols?
-    * 2º Quais jogadores tem mais cartão vermelho?
-    * 3º Quais jogadores tem mais cartão amarelo?
-    * 4º Quais jogadores tem mais faltas?
+    * 1º Quem fez mais gols!!! - Caso de goleiro Quem tomou MENOS gols!
+    * 2º Menos cartão vermelhos!!!
+    * 3º Menos cartão amarelos!!!
+    * 4º Menos faltas!!!
+    * 5º Alfabeto!!!
 
     ? A saída deve conter a soma de status de todos os 10 jogadores!.
-    ! Artilheiros
-    ! Fulano(Gremio), Ciclado(Gremio) e Beltrano(Ypiranga) tem 1 gol.
-    ! Expulsos
-    ! Fulano(Gremio) tem 1 cartão vermelho.
-    ! Amarelados
-    ! Fulano(Gremio) tem 1 cartão amarelo.
-    ! Cavalo
-    ! Fulano(Gremio) tem 10 faltas. 
+    ! 1º Diego Sousa - Gremio - 1 gol - 0 cartão vermelho - 0 cartão amarelo - 9 faltas
+    ! 2º FULANO - XXXXXX - 1 gol - 0 cartão vermelho - 0 cartão amarelo - 9 faltas
+    ! 3º CICLANO- ZZZZZZ - 1 gol - 0 cartão vermelho - 0 cartão amarelo - 9 faltas
 */
+

@@ -44,7 +44,8 @@ const partidas = [{
                 faltas: 4
             }
         }]
-    }, {
+    },
+    {
         nome: 'Ypiranga',
         jogadores: [{
             nome: 'Edson',
@@ -134,7 +135,8 @@ const partidas = [{
                 faltas: 5
             }
         }]
-    }, {
+    },
+    {
         nome: 'Ypiranga',
         jogadores: [{
             nome: 'Edson',
@@ -183,16 +185,43 @@ const partidas = [{
 /*
     TODO: Tendo em mente o objeto 'partidas' escrito acima resolva o seguinte problema.
     
-    ? Para auxiliar a Seleção Brasileira vamos ordenar os jogadores!
+    ? Após identificarmos o melhor jogador de cada partida, a federação GAUCHA deseja agora premiar o melhor jogador da FINAL.
+    ? O Calculo para encontrar o melhor desempenho é simples!
     
-    * 1º Quem fez mais gols!!! - Caso de goleiro Quem tomou MENOS gols!
-    * 2º Menos cartão vermelhos!!!
-    * 3º Menos cartão amarelos!!!
-    * 4º Menos faltas!!!
-    * 5º Alfabeto!!!
+    * Quem fez mais gols!!!
+    * Caso de empate, é quem tomou menos cartões 1ª Vermelho 2ª Amarelo!!!
+    * Caso de empate, é quem tem menos faltas!!!
+    * Caso de empate é quem tem o nome em ordem afabética!!!
 
-    ? A saída deve conter a soma de status de todos os 10 jogadores!.
-    ! 1º Diego Sousa - Gremio - 1 gol - 0 cartão vermelho - 0 cartão amarelo - 9 faltas
-    ! 2º FULANO - XXXXXX - 1 gol - 0 cartão vermelho - 0 cartão amarelo - 9 faltas
-    ! 3º CICLANO- ZZZZZZ - 1 gol - 0 cartão vermelho - 0 cartão amarelo - 9 faltas
+    ? A Saída para cada partida deve ser conforme o exemplo a seguir.
+    ! Melhor jogador da final é Diego Sousa tendo feito 1 gol e fazendo 9 faltas.
 */
+
+function bestPlayer(numeroPartida, partida){
+    var listaTodosJogadores = partida.times[0].jogadores.concat(partida.times[1].jogadores)// faz uma lista com todos os jogadores dos dois times
+    var listaOrdenada = listaTodosJogadores.sort(
+      function(jogadorA,jogadorB){
+        if(jogadorA.status.gol>jogadorB.status.gol)return -1;
+        else if(jogadorA.status.gol<jogadorB.status.gol)return 1;
+  
+        else if(jogadorA.status.cartao.vermelho<jogadorB.status.cartao.vermelho)return -1;
+        else if(jogadorA.status.cartao.vermelho>jogadorB.status.cartao.vermelho)return 1;
+        
+        else if(jogadorA.status.cartao.amarelo<jogadorB.status.cartao.amarelo)return -1;
+        else if(jogadorA.status.cartao.amarelo>jogadorB.status.cartao.amarelo)return 1;
+  
+        else if(jogadorA.status.falftas<jogadorB.status.faltas)return -1;
+        else if(jogadorA.status.faltas>jogadorB.status.faltas)return 1;
+  
+        return 0;
+      }
+    ) //compara e ordena
+  
+    var melhor =  listaOrdenada[0]//retorna o primeiro
+    return `Melhor jogador  da final é ${melhor.nome} tendo feito ${melhor.status.gol} e fazendo ${melhor.status.faltas} faltas.` 
+  }
+  
+  for (let i = 0;i < partidas.length; i++){
+    console.log(bestPlayer(i, partidas[i]))}
+
+

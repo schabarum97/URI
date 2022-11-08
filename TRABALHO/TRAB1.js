@@ -11,7 +11,7 @@ const partidas = [{
                 cartao: { amarelo: 1, vermelho: 0 },
                 faltas: 0
             }
-        },{
+        }, {
             nome: 'Geromel',
             pos: 'ZAG',
             status: {
@@ -19,7 +19,7 @@ const partidas = [{
                 cartao: { amarelo: 1, vermelho: 0 },
                 faltas: 3
             }
-        },{
+        }, {
             nome: 'Lucas Silva',
             pos: 'VOL',
             status: {
@@ -27,7 +27,7 @@ const partidas = [{
                 cartao: { amarelo: 0, vermelho: 0 },
                 faltas: 5
             }
-        },{
+        }, {
             nome: 'Campaz',
             pos: 'MEC',
             status: {
@@ -35,7 +35,7 @@ const partidas = [{
                 cartao: { amarelo: 1, vermelho: 0 },
                 faltas: 2
             }
-        },{
+        }, {
             nome: 'Diego Souza',
             pos: 'ATA',
             status: {
@@ -55,7 +55,7 @@ const partidas = [{
                 cartao: { amarelo: 1, vermelho: 0 },
                 faltas: 2
             }
-        },{
+        }, {
             nome: 'Bispo',
             pos: 'ZAG',
             status: {
@@ -63,7 +63,7 @@ const partidas = [{
                 cartao: { amarelo: 0, vermelho: 0 },
                 faltas: 6
             }
-        },{
+        }, {
             nome: 'Falcão',
             pos: 'VOL',
             status: {
@@ -71,7 +71,7 @@ const partidas = [{
                 cartao: { amarelo: 1, vermelho: 0 },
                 faltas: 2
             }
-        },{
+        }, {
             nome: 'Luiz',
             pos: 'MEC',
             status: {
@@ -79,7 +79,7 @@ const partidas = [{
                 cartao: { amarelo: 0, vermelho: 0 },
                 faltas: 1
             }
-        },{
+        }, {
             nome: 'Hugo',
             pos: 'ATA',
             status: {
@@ -89,7 +89,7 @@ const partidas = [{
             }
         }]
     }]
-},{
+}, {
     data: '02/04/2022',
     local: 'Arena do Grêmio',
     times: [{
@@ -102,7 +102,7 @@ const partidas = [{
                 cartao: { amarelo: 1, vermelho: 0 },
                 faltas: 1
             }
-        },{
+        }, {
             nome: 'Geromel',
             pos: 'ZAG',
             status: {
@@ -110,7 +110,7 @@ const partidas = [{
                 cartao: { amarelo: 0, vermelho: 0 },
                 faltas: 2
             }
-        },{
+        }, {
             nome: 'Lucas Silva',
             pos: 'VOL',
             status: {
@@ -118,7 +118,7 @@ const partidas = [{
                 cartao: { amarelo: 1, vermelho: 0 },
                 faltas: 3
             }
-        },{
+        }, {
             nome: 'Campaz',
             pos: 'MEC',
             status: {
@@ -126,7 +126,7 @@ const partidas = [{
                 cartao: { amarelo: 1, vermelho: 0 },
                 faltas: 4
             }
-        },{
+        }, {
             nome: 'Diego Souza',
             pos: 'ATA',
             status: {
@@ -146,7 +146,7 @@ const partidas = [{
                 cartao: { amarelo: 0, vermelho: 0 },
                 faltas: 1
             }
-        },{
+        }, {
             nome: 'Bispo',
             pos: 'ZAG',
             status: {
@@ -154,7 +154,7 @@ const partidas = [{
                 cartao: { amarelo: 0, vermelho: 1 },
                 faltas: 2
             }
-        },{
+        }, {
             nome: 'Falcão',
             pos: 'VOL',
             status: {
@@ -162,7 +162,7 @@ const partidas = [{
                 cartao: { amarelo: 0, vermelho: 0 },
                 faltas: 3
             }
-        },{
+        }, {
             nome: 'Luiz',
             pos: 'MEC',
             status: {
@@ -170,7 +170,7 @@ const partidas = [{
                 cartao: { amarelo: 0, vermelho: 0 },
                 faltas: 2
             }
-        },{
+        }, {
             nome: 'Hugo',
             pos: 'ATA',
             status: {
@@ -199,41 +199,33 @@ const partidas = [{
     ! Melhor jogador da partida 2 no Estádio Arena do Grêmio Geromel tendo feito 1 gol e fazendo 2 faltas.
 */
 
-function whoWon(partida) {
-    let golsPartida = []
-    for (let time = 0; time < 2; time++){
-        golsPartida.push(0)
-        for (let i = 0; i < 5; i++){
-            golsPartida[time] += partidas[partida].times[time].jogadores[i].status.gol
-        }    
-    }
-    if (golsPartida[0] > golsPartida[1]) {
-        return 0 // Time 1 ganhou
-    }else if (golsPartida[1] > golsPartida[0]){
-        return 1 // Time 2 ganhou
-    }else{
-        return 2 // Empate
-    }
-}
+function bestPlayer(numeroPartida, partida) {
+    const golsTime1 = partida.times[0].jogadores.reduce((soma, objeto) => {
+        return soma + objeto.status.gol
+    }, 0) // Faz a busca de quem fez mais gols no time 1
+    const golsTime2 = partida.times[1].jogadores.reduce((soma, objeto) => {
+        return soma + objeto.status.gol
+    }, 0) // Faz a busca de quem fez mais gols no time 1
+    let bestTeam = golsTime1 > golsTime2 ? 0 : 1 // Busca que ganhou a partida
 
-function bestPlayer(partida, obj){
-    let winner = whoWon(partida)
-    if (winner == 2){
-        return 'Jogo teve empate portanto nenhum jogador se sobresaiu'
-    }else{
-        let game = obj[partida].local
-        let jogadores = obj[partida].times[winner].jogadores
-            .filter(a => a.status.gol > 0) // Só deixa que fez gol
-            .reduce((prev, current) => ((prev.gol > current.gol) ? prev : prev.gol === current.gol ? {prev, current} : '')) // Pega qm fez mais gols
-            //.map(a=> a.reduce((prev, current) => ((prev.cartao.vermelho < current.cartao.vermelho) ? prev : prev.cartao.vermelho === current.cartao.vermelho ? {prev, current} : ''))) // Qm tem menos cartão vermelho)
-            // .reduce((prev, current) => ((prev.cartao.amarelo < current.cartao.amarelo) ? prev : prev.cartao.amarelo === current.cartao.amarelo ? {prev, current} : '')) // Qm tem menos cartão amarelo
-            // .reduce((prev, current) => ((prev.faltas < current.faltas) ? prev : prev.faltas === current.faltas ? {prev, current} : prev)) // Qm tem menos faltas
+    let listaTodosJogadores = partida.times[bestTeam].jogadores // Procura dentro de quem ganhou a partida os jogadores
+    let listaOrdenada = listaTodosJogadores.sort(
+        function (prev, current) {
+            if (prev.status.gol > current.status.gol) { return -1 }
+            else if (prev.status.gol < current.status.gol) { return 1 }
+            else if (prev.status.cartao.vermelho < current.status.cartao.vermelho) { return -1 }
+            else if (prev.status.cartao.vermelho > current.status.cartao.vermelho) { return 1 }
+            else if (prev.status.cartao.amarelo < current.status.cartao.amarelo) { return -1 }
+            else if (prev.status.cartao.amarelo > current.status.cartao.amarelo) { return 1 }
+            else if (prev.status.faltas < current.status.faltas) { return -1 }
+            else if (prev.status.faltas > current.status.faltas) { return 1 }
+            return 0;
+        }
 
-        return `Melhor jogador da partida ${partida+1} no Estádio ${game} ${jogadores.nome} tendo feito ${jogadores.status.gol} e fazendo ${jogadores.status.faltas} faltas.` 
-    }
-    
+    ) // Faz as devidas comparações para achar quem será o melhor jogador de acordo com os cartões faltas e por último por nome
+    let melhor = listaOrdenada[0];//Retorna o primeiro que é encontrado
+    return `Melhor jogador da partida ${numeroPartida + 1} no Estádio ${partida.local} ${melhor.nome} tendo feito ${melhor.status.gol} e fazendo ${melhor.status.faltas} faltas.`
 }
-
-for (let i = 0;i < partidas.length; i++){
-     console.log(bestPlayer(i, partidas)) 
-}
+for (let i = 0; i < partidas.length; i++) {
+    console.log(bestPlayer(i, partidas[i]))
+} // Loop para retornar o melhor jogador de todas as partidas
