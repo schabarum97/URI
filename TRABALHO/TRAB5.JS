@@ -201,132 +201,165 @@ const partidas = [{
     ! Cavalo
     ! Fulano(Gremio) tem 10 faltas. 
 */
-let cartoes_vermelhos_time1 = []
-let cartoes_vermelhos_time2 = []
-
-let cartoes_amarelos_time1 = []
-let cartoes_amarelos_time2 = []
-
-let faltas_time1 = []
-let faltas_time2 = []
-
-let gols_time1 = []
-let gols_time2 = []
-
-for (let game = 0; game < 2; game++) {
-    cartoes_vermelhos_time1.push(partidas[game].times[0].jogadores.map(a => a.status.cartao.vermelho))
-    cartoes_vermelhos_time2.push(partidas[game].times[1].jogadores.map(a => a.status.cartao.vermelho))
-
-    cartoes_amarelos_time1.push(partidas[game].times[0].jogadores.map(a => a.status.cartao.amarelo))
-    cartoes_amarelos_time2.push(partidas[game].times[1].jogadores.map(a => a.status.cartao.amarelo))
-
-    faltas_time1.push(partidas[game].times[0].jogadores.map(a => a.status.faltas))
-    faltas_time2.push(partidas[game].times[1].jogadores.map(a => a.status.faltas))
-
-    gols_time1.push(partidas[game].times[0].jogadores.map(a => a.status.gol))
-    gols_time2.push(partidas[game].times[1].jogadores.map(a => a.status.gol))
-}
-
-// * SOMA DOS STATS PARA COMPARAR POSTERIORMENTE
-let all_red_cards_time1 = []
-let all_red_cards_time2 = []
-
-let all_yellow_cards_time1 = []
-let all_yellow_cards_time2 = []
-
-let all_faults_time1 = []
-let all_faults_time2 = []
-
-let all_goals_time1 = []
-let all_goals_time2 = []
-
-let names_t1 = []
-let names_t2 = []
-for (let i = 0; i < 5; i++) {
-    all_red_cards_time1.push(cartoes_vermelhos_time1.reduce((a, b) => a[i] + b[i]))
-    all_red_cards_time2.push(cartoes_vermelhos_time2.reduce((a, b) => a[i] + b[i]))
-
-    all_yellow_cards_time1.push(cartoes_amarelos_time1.reduce((a, b) => a[i] + b[i]))
-    all_yellow_cards_time2.push(cartoes_amarelos_time2.reduce((a, b) => a[i] + b[i]))
-
-    all_faults_time1.push(faltas_time1.reduce((a, b) => a[i] + b[i]))
-    all_faults_time2.push(faltas_time2.reduce((a, b) => a[i] + b[i]))
-
-    all_goals_time1.push(gols_time1.reduce((a, b) => a[i] + b[i]))
-    all_goals_time2.push(gols_time2.reduce((a, b) => a[i] + b[i]))
-
-    names_t1.push(partidas[0].times[0].jogadores[i].nome)
-    names_t2.push(partidas[0].times[1].jogadores[i].nome)
-}
-let all_reds = (all_red_cards_time1.concat(all_red_cards_time2))
-let all_yellow = (all_yellow_cards_time1.concat(all_yellow_cards_time2))
-let all_faults = (all_faults_time1.concat(all_faults_time2))
-let all_goals = (all_goals_time1.concat(all_goals_time2))
-let all_names = (names_t1.concat(names_t2))
-
-let gols_levados = []
-gols_levados.push(all_goals_time2.reduce((a, b) => a + b), all_goals_time1.reduce((a, b) => a + b))
-
-let maior_gols = all_goals.reduce((a, b) => Math.max(a, b))
-let maior_faltas = all_faults.reduce((a, b) => Math.max(a, b))
-let maior_vermelho = all_reds.reduce((a, b) => Math.max(a, b))
-let maior_amarelo = all_yellow.reduce((a, b) => Math.max(a, b))
-
-let x = all_goals.indexOf(maior_gols)
-let index_gols = []
-while (x !== -1) {
-    index_gols.push(x)
-    x = all_goals.indexOf(maior_gols, x + 1)
-}
-let y = all_reds.indexOf(maior_vermelho)
-let index_reds = []
-while (y !== -1) {
-    index_reds.push(y)
-    y = all_reds.indexOf(maior_vermelho, y + 1)
-}
-let z = all_yellow.indexOf(maior_amarelo)
-let index_yellow = []
-while (z !== -1) {
-    index_yellow.push(z)
-    z = all_yellow.indexOf(maior_amarelo, z + 1)
-}
-let w = all_faults.indexOf(maior_faltas)
-let index_faltas = []
-while (w !== -1) {
-    index_faltas.push(w)
-    w = all_faults.indexOf(maior_faltas, w + 1)
-}
-let message = 'Artilheiros\n'
-
-for (let i = 0; i < index_gols.length; i++){
-    (index_gols[i] < 5) ?
-    message += (`${all_names[index_gols[i]]} (${partidas[0].times[0].nome}), `)
-    :
-    message += (`${all_names[index_gols[i]]} (${partidas[0].times[1].nome})`)
-}
-message += ` tem ${maior_gols} gol(s).\nExpulsos\n`
-
-for (let i = 0; i < index_reds.length; i++){
-    (index_reds[i] < 5) ?
-    message += (`${all_names[index_reds[i]]} (${partidas[0].times[0].nome}), `)
-    :
-    message += (`${all_names[index_reds[i]]} (${partidas[0].times[1].nome})`)
-}
-message +=  ` tem ${maior_vermelho} cartão vermelho(s).\nAmarelados\n`
-
-for (let i = 0; i < index_yellow.length; i++){
-    (index_yellow[i] < 5) ?
-    message += (`${all_names[index_yellow[i]]} (${partidas[0].times[0].nome})`)
-    :
-    message += (`${all_names[index_yellow[i]]} (${partidas[0].times[1].nome})`)
-}
-message +=  ` tem ${maior_vermelho} cartão vermelho(s).\nCavalo\n`
-
-for (let i = 0; i < index_faltas.length; i++){
-    (index_faltas[i] < 5) ?
-    message += (`${all_names[index_faltas[i]]} (${partidas[0].times[0].nome})`)
-    :
-    message += (`${all_names[index_faltas[i]]} (${partidas[0].times[1].nome})`)
-}
-message +=  ` fez ${maior_faltas} falta(s)`
-console.log(message) 
+function BestsPlayersFinal(partidas) {
+    let listaTodosJogadores = []
+  
+    const golsTime1 = partidas[0].times[0].jogadores.reduce(
+      (soma, objeto) => {
+        return soma + objeto.status.gol;
+      },
+      0
+    )
+  
+    const golsTime2 = partidas[0].times[1].jogadores.reduce(
+      (soma, objeto) => {
+        return soma + objeto.status.gol;
+      },
+      0
+    )
+  
+    const golsTime3 = partidas[1].times[0].jogadores.reduce(
+      (soma, objeto) => {
+        return soma + objeto.status.gol;
+      },
+      0
+    )
+  
+    const golsTime4 = partidas[1].times[1].jogadores.reduce(
+      (soma, objeto) => {
+        return soma + objeto.status.gol;
+      },
+      0
+    )
+  
+    listaTodosJogadores = partidas[0].times[0].jogadores.concat(
+      partidas[0].times[1].jogadores
+    ) //Monta uma lista com todos os jogadores da posição 0 à 4 Grêmio, do 5 à 9 Ypiranga
+  
+    listaTodosJogadores[0].status.golSofridos = golsTime2 + golsTime4
+    listaTodosJogadores[5].status.golSofridos = golsTime1 + golsTime3
+  
+    for (let i = 0; i < listaTodosJogadores.length; i++) {
+      if (i < 5) listaTodosJogadores[i].time = partidas[0].times[0].nome
+      else listaTodosJogadores[i].time = partidas[0].times[1].nome
+    }
+  
+    for (let i = 1; i < partidas.length; i++) {
+      //Loop para Percorer todas as partidas
+      for (let j = 0; j < partidas[i].times.length; j++) {
+        //Loop para percorrer os times
+        for (let k = 0; k < partidas[i].times[j].jogadores.length; k++) {
+          var controleLista = k + j * 5
+          var jogadorAtual = partidas[i].times[j].jogadores[k]
+          listaTodosJogadores[controleLista].status.gol +=jogadorAtual.status.gol
+          listaTodosJogadores[controleLista].status.faltas +=jogadorAtual.status.faltas
+          listaTodosJogadores[controleLista].status.cartao.amarelo +=jogadorAtual.status.cartao.amarelo
+          listaTodosJogadores[controleLista].status.cartao.vermelho +=jogadorAtual.status.cartao.vermelho
+        }
+      }
+    }
+  
+    let listaOrdenada = listaTodosJogadores.sort(function (jogadorA, jogadorB) {
+      if (jogadorA.pos == "GOL" && jogadorB.pos == "GOL") {
+        if (jogadorA.status.golSofridos < jogadorB.status.golSofridos) return -1
+        else if (jogadorA.status.golSofridos > jogadorB.status.golSofridos)
+          return 1
+      }
+      if (jogadorA.status.gol > jogadorB.status.gol) return -1
+      else if (jogadorA.status.gol < jogadorB.status.gol) return 1
+      else if (jogadorA.status.cartao.vermelho > jogadorB.status.cartao.vermelho)return -1
+      else if (jogadorA.status.cartao.vermelho < jogadorB.status.cartao.vermelho)return 1
+      else if (jogadorA.status.cartao.amarelo < jogadorB.status.cartao.amarelo)return -1
+      else if (jogadorA.status.cartao.amarelo > jogadorB.status.cartao.amarelo)return 1
+      else if (jogadorA.status.faltas < jogadorB.status.faltas) return -1
+      else if (jogadorA.status.faltas > jogadorB.status.faltas) return 1
+      else if (jogadorA.nome < jogadorB.nome) return -1
+      else if (jogadorA.nome > jogadorB.nome) return 1
+      return 0
+    })// Faz as devidas comparações para achar quem será o melhor jogador
+  
+    //Qual é a maior quantidade de Gols e quem fez esses gols
+    let Artilheiro = Math.max.apply(
+      null,
+      listaOrdenada.map((a) => a.status.gol)
+    )
+    let listaArtilheiros = listaOrdenada.filter(
+      (a) => a.status.gol == Artilheiro
+    )
+    //Qual é a maior quantidade de Cartões Vermelhos e quem levou esses cartões
+    let cartaoVermelho = Math.max.apply(
+      null,
+      listaOrdenada.map((a) => a.status.cartao.vermelho)
+    )
+  
+    let listaVermelhos = listaOrdenada.filter(
+      (a) => a.status.cartao.vermelho == cartaoVermelho
+    )
+    //Qual é a maior quantidade de Cartões Amarelos e quem levou esses cartões
+    let cartaoAmarelo = Math.max.apply(
+      null,
+      listaOrdenada.map((a) => a.status.cartao.amarelo)
+    )
+    let listaAmarelos = listaOrdenada.filter(
+      (a) => a.status.cartao.amarelo == cartaoAmarelo
+    )
+    //Qual é a maior quantidade de Faltas e quem fez essas Faltas
+    let Faltas = Math.max.apply(
+      null,
+      listaOrdenada.map((a) => a.status.faltas)
+    )
+    let listaFaltas = listaOrdenada.filter((a) => a.status.faltas == Faltas)
+  
+    const listafinal = [
+      listaArtilheiros,
+      listaVermelhos,
+      listaAmarelos,
+      listaFaltas
+    ]
+    return listafinal
+  }
+  
+  let lista = BestsPlayersFinal(partidas)
+  let qtdArtilheiros = lista[0][0].status.gol;
+  let nomesArtilheiros = ""
+  for (let i = 0; i < lista[0].length; i++) {
+    if (i > 0)
+      nomesArtilheiros += ", " + lista[0][i].nome + "(" + lista[0][i].time + ")"
+    else nomesArtilheiros += lista[0][i].nome + "(" + lista[0][i].time + ")"
+  }
+  
+  let qtdVermelhos = lista[1][0].status.cartao.vermelho
+  let nomesVermelhos = "";
+  for (let i = 0; i < lista[1].length; i++) {
+    if (i > 0)
+    nomesVermelhos += ", " + lista[1][i].nome + "(" + lista[1][i].time + ")"
+    else nomesVermelhos += lista[1][i].nome + "(" + lista[1][i].time + ")"
+  }
+  
+  let qtdAmarelos = lista[2][0].status.cartao.amarelo
+  let nomesAmarelos = ""
+  for (let i = 0; i < lista[2].length; i++) {
+    if (i > 0)
+    nomesAmarelos += ", " + lista[2][i].nome + "(" + lista[2][i].time + ")"
+    else nomesAmarelos += lista[2][i].nome + "(" + lista[2][i].time + ")"
+  }
+  
+  let qtdFaltas = lista[3][0].status.faltas
+  let nomesFaltas = ""
+  for (let i = 0; i < lista[3].length; i++) {
+    if (i > 0)
+    nomesFaltas += ", " + lista[3][i].nome + "(" + lista[3][i].time + ")"
+    else nomesFaltas += lista[3][i].nome + "(" + lista[3][i].time + ")"
+  }
+  let saida = `
+   Artilheiros
+   ${nomesArtilheiros} tem ${qtdArtilheiros} gols
+   Expulsos
+   ${nomesVermelhos} tem ${qtdVermelhos} vermelhos
+   Amarelados
+   ${nomesAmarelos} tem ${qtdAmarelos} amarelos
+   Cavalo
+   ${nomesFaltas} tem ${qtdFaltas} faltas
+  `
+  
+  console.log(saida)

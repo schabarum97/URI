@@ -199,7 +199,7 @@ const partidas = [{
     ! Melhor jogador da partida 2 no Estádio Arena do Grêmio Geromel tendo feito 1 gol e fazendo 2 faltas.
 */
 
-function bestPlayer(numeroPartida, partida) {
+function BestPlayer(numeroPartida, partida) {
     const golsTime1 = partida.times[0].jogadores.reduce((soma, objeto) => {
         return soma + objeto.status.gol
     }, 0) // Faz a busca de quem fez mais gols no time 1
@@ -227,5 +227,5 @@ function bestPlayer(numeroPartida, partida) {
     return `Melhor jogador da partida ${numeroPartida + 1} no Estádio ${partida.local} ${melhor.nome} tendo feito ${melhor.status.gol} e fazendo ${melhor.status.faltas} faltas.`
 }
 for (let i = 0; i < partidas.length; i++) {
-    console.log(bestPlayer(i, partidas[i]))
+    console.log(BestPlayer(i, partidas[i]))
 } // Loop para retornar o melhor jogador de todas as partidas
