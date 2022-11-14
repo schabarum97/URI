@@ -226,7 +226,7 @@ function BestsPlayersFinal(partidas) {
             return soma + objeto.status.gol
         },
         0
-    )
+    ) // Cria o 'objeto' novamente a partir do reduce com os jogadores de cada um dos times levando em conta que cada partida terá dois times
 
     listaTodosJogadores = partidas[0].times[0].jogadores.concat(
         partidas[0].times[1].jogadores
@@ -259,7 +259,7 @@ function BestsPlayersFinal(partidas) {
         if (jogadorA.pos == "GOL" && jogadorB.pos == "GOL") {
             if (jogadorA.status.golSofridos < jogadorB.status.golSofridos) return -1
             else if (jogadorA.status.golSofridos > jogadorB.status.golSofridos)return 1
-        }
+        }// Faz as comparações para achar o melhor goleiro
         if (jogadorA.status.gol > jogadorB.status.gol) return -1
         else if (jogadorA.status.gol < jogadorB.status.gol) return 1
         else if (jogadorA.status.cartao.vermelho > jogadorB.status.cartao.vermelho)return -1
@@ -277,7 +277,7 @@ function BestsPlayersFinal(partidas) {
 
 let lista = BestsPlayersFinal(partidas)
 
-for (let i = 0; i < lista.length; i++) {
+for (let i = 0; i < lista.length; i++) { 
     let atual = lista[i];
     console.log(
         `${i + 1}º: ${atual.nome} - ${atual.pos} - ${atual.time} - ${atual.status.gol} gol(s) - ${atual.status.cartao.vermelho}cartão vermelho - ${atual.status.cartao.amarelo
@@ -286,4 +286,4 @@ for (let i = 0; i < lista.length; i++) {
             : ""
         }`
     )
-}
+} //Loop para imprimir todos os jogadores

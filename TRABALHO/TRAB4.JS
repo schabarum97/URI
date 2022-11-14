@@ -229,7 +229,7 @@ function BestsPlayersFinal(partidas) {
         return soma + objeto.status.gol;
       },
       0
-    )
+    ) // Cria o 'objeto' novamente a partir do reduce com os jogadores de cada um dos times levando em conta que cada partida terá dois times
   
     listaTodosJogadores = partidas[0].times[0].jogadores.concat(
       partidas[0].times[1].jogadores
@@ -248,8 +248,8 @@ function BestsPlayersFinal(partidas) {
       for (let j = 0; j < partidas[i].times.length; j++) {
         //Loop para percorrer os times
         for (let k = 0; k < partidas[i].times[j].jogadores.length; k++) {
-          var controleLista = k + j * 5
-          var jogadorAtual = partidas[i].times[j].jogadores[k]
+          let controleLista = k + j * 5
+          let jogadorAtual = partidas[i].times[j].jogadores[k]
           listaTodosJogadores[controleLista].status.gol +=jogadorAtual.status.gol
           listaTodosJogadores[controleLista].status.faltas +=jogadorAtual.status.faltas
           listaTodosJogadores[controleLista].status.cartao.amarelo +=jogadorAtual.status.cartao.amarelo
@@ -263,7 +263,7 @@ function BestsPlayersFinal(partidas) {
         if (jogadorA.status.golSofridos < jogadorB.status.golSofridos) return -1
         else if (jogadorA.status.golSofridos > jogadorB.status.golSofridos)
           return 1
-      }
+      } // Faz as comparações para achar o melhor goleiro
       if (jogadorA.status.gol > jogadorB.status.gol) return -1
       else if (jogadorA.status.gol < jogadorB.status.gol) return 1
       else if (jogadorA.status.cartao.vermelho > jogadorB.status.cartao.vermelho)return -1
@@ -290,7 +290,7 @@ function BestsPlayersFinal(partidas) {
   let lista = BestsPlayersFinal(partidas)
   
   for (let i = 0; i < lista.length; i++) {
-    var atual = lista[i];
+    let atual = lista[i];
     console.log(
       `${i + 1}º: ${atual.nome} - ${atual.pos} - ${atual.time}, GOLS: ${
         atual.status.gol
@@ -302,5 +302,5 @@ function BestsPlayersFinal(partidas) {
           : ""
       }`
     )
-  }
+  }// Loop para imprimir os jogadores
   
