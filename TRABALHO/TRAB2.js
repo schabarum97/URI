@@ -216,15 +216,15 @@ function BestPlayersFinal(partidas) {
         }
     }
 
-    let listaOrdenada = listaTodosJogadores.sort(function (jogadorA, jogadorB) {
-        if (jogadorA.status.gol > jogadorB.status.gol) return -1
-        else if (jogadorA.status.gol < jogadorB.status.gol) return 1
-        else if (jogadorA.status.cartao.vermelho < jogadorB.status.cartao.vermelho) return -1
-        else if (jogadorA.status.cartao.vermelho > jogadorB.status.cartao.vermelho) return 1
-        else if (jogadorA.status.cartao.amarelo < jogadorB.status.cartao.amarelo) return -1
-        else if (jogadorA.status.cartao.amarelo > jogadorB.status.cartao.amarelo) return 1
-        else if (jogadorA.status.faltas < jogadorB.status.faltas) return -1
-        else if (jogadorA.status.faltas > jogadorB.status.faltas) return 1
+    let listaOrdenada = listaTodosJogadores.sort(function (firstPlayer, secondPlayer) {
+        if (firstPlayer.status.gol > secondPlayer.status.gol) return -1
+        else if (firstPlayer.status.gol < secondPlayer.status.gol) return 1
+        else if (firstPlayer.status.cartao.vermelho < secondPlayer.status.cartao.vermelho) return -1
+        else if (firstPlayer.status.cartao.vermelho > secondPlayer.status.cartao.vermelho) return 1
+        else if (firstPlayer.status.cartao.amarelo < secondPlayer.status.cartao.amarelo) return -1
+        else if (firstPlayer.status.cartao.amarelo > secondPlayer.status.cartao.amarelo) return 1
+        else if (firstPlayer.status.faltas < secondPlayer.status.faltas) return -1
+        else if (firstPlayer.status.faltas > secondPlayer.status.faltas) return 1
 
         return 0
     }) // Faz as devidas comparações para achar quem será o melhor jogador de acordo com os cartões faltas e por último por nome

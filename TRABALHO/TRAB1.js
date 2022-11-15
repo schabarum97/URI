@@ -210,15 +210,15 @@ function BestPlayersFinal(numeroPartida, partida) {
 
     let listaTodosJogadores = partida.times[bestTeam].jogadores // Procura dentro de quem ganhou a partida os jogadores
     let listaOrdenada = listaTodosJogadores.sort(
-        function (prev, current) {
-            if (prev.status.gol > current.status.gol) { return -1 }
-            else if (prev.status.gol < current.status.gol) { return 1 }
-            else if (prev.status.cartao.vermelho < current.status.cartao.vermelho) { return -1 }
-            else if (prev.status.cartao.vermelho > current.status.cartao.vermelho) { return 1 }
-            else if (prev.status.cartao.amarelo < current.status.cartao.amarelo) { return -1 }
-            else if (prev.status.cartao.amarelo > current.status.cartao.amarelo) { return 1 }
-            else if (prev.status.faltas < current.status.faltas) { return -1 }
-            else if (prev.status.faltas > current.status.faltas) { return 1 }
+        function (firstPlayer, secondPlayer) {
+            if (firstPlayer.status.gol > secondPlayer.status.gol) { return -1 }
+            else if (firstPlayer.status.gol < secondPlayer.status.gol) { return 1 }
+            else if (firstPlayer.status.cartao.vermelho < secondPlayer.status.cartao.vermelho) { return -1 }
+            else if (firstPlayer.status.cartao.vermelho > secondPlayer.status.cartao.vermelho) { return 1 }
+            else if (firstPlayer.status.cartao.amarelo < secondPlayer.status.cartao.amarelo) { return -1 }
+            else if (firstPlayer.status.cartao.amarelo > secondPlayer.status.cartao.amarelo) { return 1 }
+            else if (firstPlayer.status.faltas < secondPlayer.status.faltas) { return -1 }
+            else if (firstPlayer.status.faltas > secondPlayer.status.faltas) { return 1 }
             return 0;
         }
 

@@ -258,37 +258,37 @@ function BestsPlayersFinal(partidas) {
       }
     }
   
-    let listaOrdenada = listaTodosJogadores.sort(function (jogadorA, jogadorB) {
-      if (jogadorA.pos == "GOL" && jogadorB.pos == "GOL") {
-        if (jogadorA.status.golSofridos < jogadorB.status.golSofridos) return -1
-        else if (jogadorA.status.golSofridos > jogadorB.status.golSofridos)
+    let listaOrdenada = listaTodosJogadores.sort(function (firstPlayer, secondPlayer) {
+      if (firstPlayer.pos == "GOL" && secondPlayer.pos == "GOL") {
+        if (firstPlayer.status.golSofridos < secondPlayer.status.golSofridos) return -1
+        else if (firstPlayer.status.golSofridos > secondPlayer.status.golSofridos)
           return 1
       } // Faz as comparações para achar o melhor goleiro
-      if (jogadorA.status.gol > jogadorB.status.gol) return -1
-      else if (jogadorA.status.gol < jogadorB.status.gol) return 1
-      else if (jogadorA.status.cartao.vermelho > jogadorB.status.cartao.vermelho)return -1
-      else if (jogadorA.status.cartao.vermelho < jogadorB.status.cartao.vermelho)return 1
-      else if (jogadorA.status.cartao.amarelo < jogadorB.status.cartao.amarelo)return -1
-      else if (jogadorA.status.cartao.amarelo > jogadorB.status.cartao.amarelo)return 1
-      else if (jogadorA.status.faltas < jogadorB.status.faltas) return -1
-      else if (jogadorA.status.faltas > jogadorB.status.faltas) return 1
-      else if (jogadorA.nome < jogadorB.nome) return -1
-      else if (jogadorA.nome > jogadorB.nome) return 1
+      if (firstPlayer.status.gol > secondPlayer.status.gol) return -1
+      else if (firstPlayer.status.gol < secondPlayer.status.gol) return 1
+      else if (firstPlayer.status.cartao.vermelho > secondPlayer.status.cartao.vermelho)return -1
+      else if (firstPlayer.status.cartao.vermelho < secondPlayer.status.cartao.vermelho)return 1
+      else if (firstPlayer.status.cartao.amarelo < secondPlayer.status.cartao.amarelo)return -1
+      else if (firstPlayer.status.cartao.amarelo > secondPlayer.status.cartao.amarelo)return 1
+      else if (firstPlayer.status.faltas < secondPlayer.status.faltas) return -1
+      else if (firstPlayer.status.faltas > secondPlayer.status.faltas) return 1
+      else if (firstPlayer.nome < secondPlayer.nome) return -1
+      else if (firstPlayer.nome > secondPlayer.nome) return 1
       return 0
     })// Faz as devidas comparações para achar quem será o melhor jogador
   
-    let teste1 = listaOrdenada.find((a) => a.pos == "GOL")
-    let teste2 = listaOrdenada.find((a) => a.pos == "ZAG")
-    let teste3 = listaOrdenada.find((a) => a.pos == "VOL")
-    let teste4 = listaOrdenada.find((a) => a.pos == "MEC")
-    let teste5 = listaOrdenada.find((a) => a.pos == "ATA")
-    let teste6 = listaOrdenada.find((a) => a.pos == "GOL")
-    let teste7 = listaOrdenada.find((a) => a.pos == "ZAG")
-    let teste8 = listaOrdenada.find((a) => a.pos == "VOL")
-    let teste9 = listaOrdenada.find((a) => a.pos == "MEC")
-    let teste0 = listaOrdenada.find((a) => a.pos == "ATA")
+    let aux1 = listaOrdenada.find((a) => a.pos == "GOL")
+    let aux2 = listaOrdenada.find((a) => a.pos == "ZAG")
+    let aux3 = listaOrdenada.find((a) => a.pos == "VOL")
+    let aux4 = listaOrdenada.find((a) => a.pos == "MEC")
+    let aux5 = listaOrdenada.find((a) => a.pos == "ATA")
+    let aux6 = listaOrdenada.find((a) => a.pos == "GOL")
+    let aux7 = listaOrdenada.find((a) => a.pos == "ZAG")
+    let aux8 = listaOrdenada.find((a) => a.pos == "VOL")
+    let aux9 = listaOrdenada.find((a) => a.pos == "MEC")
+    let aux0 = listaOrdenada.find((a) => a.pos == "ATA")
     
-    const rets = [teste1, teste2, teste3, teste4, teste5, teste6, teste7, teste8, teste9, teste0]
+    const rets = [aux1, aux2, aux3, aux4, aux5, aux6, aux7, aux8, aux9, aux0]
     return rets
   }
   
