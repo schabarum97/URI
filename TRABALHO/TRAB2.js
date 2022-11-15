@@ -230,6 +230,6 @@ function BestPlayersFinal(partidas) {
     }) // Faz as devidas comparações para achar quem será o melhor jogador de acordo com os cartões faltas e por último por nome
 
     let melhor = listaOrdenada[0]; //Retorna o primeiro que é encontrado
-    return `Melhor jogador da final é ${melhor.nome} tendo feito ${melhor.status.gol} gol(s) e fazendo ${melhor.status.faltas}falta(s) `
+    return `Melhor jogador da final é ${melhor.nome} tendo feito ${melhor.status.gol} gol(s) e fazendo ${melhor.status.faltas} falta(s) `
 }
 console.log(BestPlayersFinal(partidas))

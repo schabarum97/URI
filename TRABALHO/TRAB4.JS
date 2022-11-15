@@ -282,21 +282,26 @@ function BestsPlayersFinal(partidas) {
     let teste3 = listaOrdenada.find((a) => a.pos == "VOL")
     let teste4 = listaOrdenada.find((a) => a.pos == "MEC")
     let teste5 = listaOrdenada.find((a) => a.pos == "ATA")
+    let teste6 = listaOrdenada.find((a) => a.pos == "GOL")
+    let teste7 = listaOrdenada.find((a) => a.pos == "ZAG")
+    let teste8 = listaOrdenada.find((a) => a.pos == "VOL")
+    let teste9 = listaOrdenada.find((a) => a.pos == "MEC")
+    let teste0 = listaOrdenada.find((a) => a.pos == "ATA")
     
-    const rets = [teste1, teste2, teste3, teste4, teste5]
+    const rets = [teste1, teste2, teste3, teste4, teste5, teste6, teste7, teste8, teste9, teste0]
     return rets
   }
   
   let lista = BestsPlayersFinal(partidas)
-  
+
   for (let i = 0; i < lista.length; i++) {
     let atual = lista[i];
     console.log(
-      `${i + 1}º: ${atual.nome} - ${atual.pos} - ${atual.time}, GOLS: ${
+      `${i + 1}º: ${atual.pos} - ${atual.nome} - ${atual.time}, gol(2) - ${
         atual.status.gol
-      }, Vermelhos: ${atual.status.cartao.vermelho}, Amarelos: ${
+      }, cartão vermelho - ${atual.status.cartao.vermelho}, cartão amarelo - ${
         atual.status.cartao.amarelo
-      }, Faltas: ${atual.status.faltas}${
+      }, faltas - ${atual.status.faltas}${
         atual.status.golSofridos
           ? ", Gols sofridos: " + atual.status.golSofridos
           : ""

@@ -280,10 +280,12 @@ let lista = BestsPlayersFinal(partidas)
 for (let i = 0; i < lista.length; i++) { 
     let atual = lista[i];
     console.log(
-        `${i + 1}º: ${atual.nome} - ${atual.pos} - ${atual.time} - ${atual.status.gol} gol(s) - ${atual.status.cartao.vermelho}cartão vermelho - ${atual.status.cartao.amarelo
+        `${i + 1}º: ${atual.nome} - ${atual.time} - ${atual.status.gol} gol(s) - ${atual.status.cartao.vermelho} cartão vermelho - ${atual.status.cartao.amarelo
         } cartão amarelo - ${atual.status.faltas} faltas ${atual.status.golSofridos
             ? ", Gols sofridos: " + atual.status.golSofridos
             : ""
         }`
     )
 } //Loop para imprimir todos os jogadores
+
+
