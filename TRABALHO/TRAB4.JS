@@ -282,14 +282,10 @@ function BestsPlayersFinal(partidas) {
     let aux3 = listaOrdenada.find((a) => a.pos == "VOL")
     let aux4 = listaOrdenada.find((a) => a.pos == "MEC")
     let aux5 = listaOrdenada.find((a) => a.pos == "ATA")
-    let aux6 = listaOrdenada.find((a) => a.pos == "GOL")
-    let aux7 = listaOrdenada.find((a) => a.pos == "ZAG")
-    let aux8 = listaOrdenada.find((a) => a.pos == "VOL")
-    let aux9 = listaOrdenada.find((a) => a.pos == "MEC")
-    let aux0 = listaOrdenada.find((a) => a.pos == "ATA")
+
     
-    const rets = [aux1, aux2, aux3, aux4, aux5, aux6, aux7, aux8, aux9, aux0]
-    return rets
+    const aux = [aux1, aux2, aux3, aux4, aux5]
+    return aux
   }
   
   let lista = BestsPlayersFinal(partidas)
