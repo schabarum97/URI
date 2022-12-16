@@ -7,6 +7,7 @@ function mult(x,y) {
     return x * y
 }
 
+
 function calcular(x,y,computar) {
     return computar (x,y)
 }

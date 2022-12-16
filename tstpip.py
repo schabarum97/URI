@@ -5,7 +5,7 @@ customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("green")
 
 root = customtkinter.CTk()
-root.geometry("750x400")
+root.geometry("300x400")
 
 textVariable = customtkinter.StringVar()
 
@@ -17,12 +17,11 @@ def getCep():
         request = requests.get(f'https://viacep.com.br/ws/{entryCep.get()}/json/')
         adress_data = request.json()
         if 'code' not in adress_data:
-            logradouro = adress_data['logradouro']
-            complemento = adress_data['complemento']
+            city = adress_data['localidade']
+            states = adress_data['uf']
+            logra = adress_data['logradouro']
             bairro = adress_data['bairro']
-            localidade = adress_data['localidade']
-            uf = adress_data['uf']
-            textVariable.set(f'Cidade {localidade} no Estado de {uf}, Logradouro {logradouro}, Bairro {bairro}')     
+            textVariable.set(f'Cidade {city} no Estado de {states}, Logradouro {logra}, Bairro {bairro}')     
         else:
             textVariable.set('CEP não encontrado')
             

@@ -1,4 +1,4 @@
-let expressao = 2
+let expressao = 1
 let  texto = '!'
 switch (expressao) {
     case 1:

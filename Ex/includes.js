@@ -1,2 +1,2 @@
-const nomes = ['Renan', '....', ',,,,']
-console.log(nomes.includes('Renan'))
+const nomes = ['Renan', 'teste.', ',,,,']
+console.log(nomes.includes('Teste'))
