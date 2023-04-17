@@ -198,7 +198,7 @@ const partidas = [{
     ! Melhor jogador da partida 1 no Estádio Colosso da Lagoa Lucas Silva tendo feito 1 gol e fazendo 5 faltas.
     ! Melhor jogador da partida 2 no Estádio Arena do Grêmio Geromel tendo feito 1 gol e fazendo 2 faltas.
 */
-
+/*
 function BestPlayersFinal(numeroPartida, partida) {
     const golsTime1 = partida.times[0].jogadores.reduce((soma, objeto) => {
         return soma + objeto.status.gol
@@ -229,3 +229,59 @@ function BestPlayersFinal(numeroPartida, partida) {
 for (let i = 0; i < partidas.length; i++) {
     console.log(BestPlayersFinal(i, partidas[i]))
 } // Loop para retornar o melhor jogador de todas as partidas
+
+*/
+
+
+// Iterar sobre cada partida
+for (let i = 0; i < partidas.length; i++) {
+    const partida = partidas[i];
+    const times = partida.times;
+  
+    // Encontrar o time vencedor da partida
+    let vencedor = null;
+    if (times[0].status.gols > times[1].status.gols) {
+      vencedor = times[0];
+    } else if (times[1].status.gols > times[0].status.gols) {
+      vencedor = times[1];
+    }
+  
+    if (vencedor !== null) {
+      // Encontrar o melhor jogador do time vencedor
+      let melhorJogador = null;
+      for (let j = 0; j < vencedor.jogadores.length; j++) {
+        const jogador = vencedor.jogadores[j];
+  
+        // Verificar se o jogador fez mais gols
+        if (melhorJogador === null || jogador.status.gol > melhorJogador.status.gol) {
+          melhorJogador = jogador;
+        }
+  
+        // Verificar se houve empate em gols e o jogador tomou menos cartões vermelhos ou amarelos
+        else if (jogador.status.gol === melhorJogador.status.gol) {
+          if (jogador.status.cartao.vermelho < melhorJogador.status.cartao.vermelho) {
+            melhorJogador = jogador;
+          } else if (jogador.status.cartao.vermelho === melhorJogador.status.cartao.vermelho) {
+            if (jogador.status.cartao.amarelo < melhorJogador.status.cartao.amarelo) {
+              melhorJogador = jogador;
+            } else if (jogador.status.cartao.amarelo === melhorJogador.status.cartao.amarelo) {
+  
+              // Verificar se houve empate em gols e cartões e o jogador fez menos faltas
+              if (jogador.status.faltas < melhorJogador.status.faltas) {
+                melhorJogador = jogador;
+              } else if (jogador.status.faltas === melhorJogador.status.faltas) {
+  
+                // Verificar se houve empate em gols, cartões e faltas e o nome do jogador em ordem alfabética
+                if (jogador.nome < melhorJogador.nome) {
+                  melhorJogador = jogador;
+                }
+              }
+            }
+          }
+        }
+      }
+  
+      // Imprimir o resultado da partida
+      console.log(`Melhor jogador da partida ${i + 1} no Estádio ${partida.local} ${melhorJogador.nome} tendo feito ${melhorJogador.status.gol} gol(s) e fazendo ${melhorJogador.status.faltas} falta(s).`);
+    }
+  }
